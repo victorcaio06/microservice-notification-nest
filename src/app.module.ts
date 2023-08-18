@@ -1,10 +1,20 @@
+import { MailerModule } from '@nestjs-modules/mailer';
 import { Module } from '@nestjs/common';
+
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 @Module({
-  imports: [],
+  imports: [
+    MailerModule.forRoot({
+      transport: {
+        host: 'smtp.ethereal.email',
+        port: 587,
+        auth: { user: 'eveline56@ethereal.email', pass: 'JhkTPvRGHvpwVsf4WE' },
+        secure: false,
+      },
+    }),
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}
